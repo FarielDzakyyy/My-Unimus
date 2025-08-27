@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalender Akademik - MyUnimus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'event-orange': '#fdba74',
+                        'dark-event-orange': '#9a3412'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .event-red { background-color: #fecaca; color: #991b1b; }
+        .dark .event-red { background-color: #7f1d1d; color: #fecaca; }
+        .event-green { background-color: #bbf7d0; color: #166534; }
+        .dark .event-green { background-color: #14532d; color: #bbf7d0; }
+        .event-yellow { background-color: #fef08a; color: #854d0e; }
+        .dark .event-yellow { background-color: #713f12; color: #fef08a; }
+        .event-purple { background-color: #e9d5ff; color: #6b21a8; }
+        .dark .event-purple { background-color: #581c87; color: #e9d5ff; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white font-sans min-h-screen flex flex-col">
+
+    <div class="bg-blue-900 dark:bg-gray-800 text-white p-4 flex items-center justify-center relative">
+        <a href="home.html" class="absolute left-4 text-lg"><i class="fa fa-arrow-left"></i></a>
+        <h2 class="text-lg font-bold">Kalender Akademik</h2>
+        <button id="darkToggle" class="absolute right-4 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-lg text-black dark:text-white text-sm">
+            🌙
+        </button>
+    </div>
+
+    <div class="p-4 flex-1 pb-28">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-4 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <button id="prevMonth" class="text-blue-500 dark:text-blue-400"><i class="fa fa-chevron-left"></i></button>
+                <h4 id="currentMonthYear" class="text-md font-bold">Bulan Tahun</h4>
+                <button id="nextMonth" class="text-blue-500 dark:text-blue-400"><i class="fa fa-chevron-right"></i></button>
+            </div>
+            <div class="grid grid-cols-7 text-center text-xs text-gray-500 dark:text-gray-400">
+                <span>Min</span>
+                <span>Sen</span>
+                <span>Sel</span>
+                <span>Rab</span>
+                <span>Kam</span>
+                <span>Jum</span>
+                <span>Sab</span>
+            </div>
+            <div id="calendarDays" class="grid grid-cols-7 text-center gap-2 mt-2">
+                <!-- Days will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <h3 class="text-md font-semibold mb-4">Agenda Penting</h3>
+        <div id="importantEvents" class="space-y-4">
+            <!-- Events will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex justify-around py-3">
+        <a href="home.html" class="flex flex-col items-center">
+            <i class="fa fa-home text-lg"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jadwal.html" class="flex flex-col items-center text-blue-600 dark:text-blue-400">
+            <i class="fa fa-calendar-alt text-lg"></i>
+            <span class="text-xs">Jadwal</span>
+        </a>
+        <a href="chatbot.html" class="flex flex-col items-center">
+            <i class="fa fa-comments text-lg"></i>
+            <span class="text-xs">Chat</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center">
+            <i class="fa fa-user text-lg"></i>
+            <span class="text-xs">Profile</span>
+        </a>
+    </div>
+
+    <script>
+        // Dark mode toggle
+        const toggleBtn = document.getElementById('darkToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Calendar functionality
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        // Important academic events with different colors (no blue)
+        const academicEvents = {
+            // Libur Nasional (Merah)
+            '2025-08-17': {
+                title: 'Hari Kemerdekaan RI',
+                date: '17 Agustus 2025',
+                icon: 'fa-flag',
+                color: 'event-red',
+                type: 'libur'
+            },
+            
+            // Akademik (Hijau)
+            '2025-08-20': {
+                title: 'Pengisian KRS Semester Ganjil',
+                date: '20-30 Agustus 2025',
+                icon: 'fa-clipboard-check',
+                color: 'event-green',
+                type: 'akademik'
+            },
+            
+            // Perkuliahan (Hijau)
+            '2025-09-01': {
+                title: 'Perkuliahan Dimulai',
+                date: '1 September 2025',
+                icon: 'fa-book',
+                color: 'event-green',
+                type: 'perkuliahan'
+            },
+            
+            // Ujian (Kuning)
+            '2025-12-15': {
+                title: 'Ujian Akhir Semester',
+                date: '15-22 Desember 2025',
+                icon: 'fa-pen',
+                color: 'event-yellow',
+                type: 'ujian'
+            },
+            
+            // Wisuda (Ungu)
+            '2025-10-25': {
+                title: 'Wisuda Semester Ganjil',
+                date: '25 Oktober 2025',
+                icon: 'fa-graduation-cap',
+                color: 'event-purple',
+                type: 'wisuda'
+            },
+            
+            // Pembayaran (Oranye)
+            '2025-11-10': {
+                title: 'Pembayaran UKT Akhir',
+                date: '10 November 2025',
+                icon: 'fa-money-bill-wave',
+                color: 'bg-event-orange dark:bg-dark-event-orange text-amber-900 dark:text-amber-100',
+                type: 'keuangan'
+            },
+            
+            // Tambahan event contoh
+            '2025-09-17': {
+                title: 'Batas Pengumpulan Tugas',
+                date: '17 September 2025',
+                icon: 'fa-tasks',
+                color: 'event-yellow',
+                type: 'akademik'
+            },
+            
+            '2025-10-10': {
+                title: 'Ujian Tengah Semester',
+                date: '10-15 Oktober 2025',
+                icon: 'fa-pen-fancy',
+                color: 'event-yellow',
+                type: 'ujian'
+            }
+        };
+
+        // Function to generate calendar
+        function generateCalendar(month, year) {
+            const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+                               "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            // Update month and year display
+            document.getElementById('currentMonthYear').textContent = 
+                `${monthNames[month]} ${year}`;
+            
+            // Get first day of month and total days in month
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+            
+            // Clear previous calendar days
+            const calendarDays = document.getElementById('calendarDays');
+            calendarDays.innerHTML = '';
+            
+            // Add days from previous month
+            for (let i = firstDay; i > 0; i--) {
+                const dayElement = document.createElement('span');
+                dayElement.className = 'py-2 text-gray-400 dark:text-gray-500';
+                dayElement.textContent = daysInPrevMonth - i + 1;
+                calendarDays.appendChild(dayElement);
+            }
+            
+            // Add days from current month
+            const today = new Date();
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayElement = document.createElement('span');
+                dayElement.className = 'py-2 rounded-full';
+                
+                // Highlight today's date with blue color
+                if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                    dayElement.classList.add('bg-blue-500', 'text-white', 'font-bold');
+                }
+                
+                // Highlight important dates with different colors
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+                if (academicEvents[dateStr]) {
+                    dayElement.classList.add(academicEvents[dateStr].color);
+                    // Add dot indicator for mobile
+                    const dot = document.createElement('span');
+                    dot.className = 'block w-1 h-1 mx-auto mt-1 rounded-full bg-current';
+                    dayElement.appendChild(dot);
+                }
+                
+                dayElement.textContent = i;
+                calendarDays.appendChild(dayElement);
+            }
+            
+            // Calculate days needed from next month
+            const totalCells = firstDay + daysInMonth;
+            const remainingCells = totalCells > 35 ? 42 - totalCells : 35 - totalCells;
+            
+            // Add days from next month
+            for (let i = 1; i <= remainingCells; i++) {
+                const dayElement = document.createElement('span');
+                dayElement.className = 'py-2 text-gray-400 dark:text-gray-500';
+                dayElement.textContent = i;
+                calendarDays.appendChild(dayElement);
+            }
+            
+            // Update important events
+            updateImportantEvents(month, year);
+        }
+        
+        // Function to update important events
+        function updateImportantEvents(month, year) {
+            const importantEvents = document.getElementById('importantEvents');
+            importantEvents.innerHTML = '';
+            
+            const monthEvents = Object.entries(academicEvents)
+                .filter(([dateStr]) => {
+                    const eventDate = new Date(dateStr);
+                    return eventDate.getMonth() === month && eventDate.getFullYear() === year;
+                })
+                .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB));
+            
+            if (monthEvents.length === 0) {
+                const noEventElement = document.createElement('div');
+                noEventElement.className = 'text-center text-gray-500 dark:text-gray-400 py-4';
+                noEventElement.textContent = 'Tidak ada agenda penting bulan ini';
+                importantEvents.appendChild(noEventElement);
+                return;
+            }
+            
+            monthEvents.forEach(([dateStr, event]) => {
+                const eventElement = document.createElement('div');
+                eventElement.className = `p-4 rounded-xl shadow flex items-center justify-between cursor-pointer ${event.color}`;
+                
+                eventElement.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fa ${event.icon} text-xl mr-4"></i>
+                        <div>
+                            <p class="text-sm font-bold">${event.title}</p>
+                            <p class="text-xs">${event.date}</p>
+                        </div>
+                    </div>
+                    <i class="fa fa-chevron-right"></i>
+                `;
+                
+                importantEvents.appendChild(eventElement);
+            });
+        }
+        
+        // Navigation buttons
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+        
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+        });
+        
+        // Initialize calendar
+        generateCalendar(currentMonth, currentYear);
+    </script>
+</body>
+</html>

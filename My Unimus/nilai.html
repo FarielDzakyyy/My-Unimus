@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Nilai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkviolet: '#9400D3',
+                        orangeCustom: '#FF8C00' // custom untuk orange agar lebih gelap
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white font-sans min-h-screen flex flex-col">
+
+    <div class="bg-blue-900 dark:bg-gray-800 text-white p-4 flex items-center justify-center relative">
+        <a href="home.html" class="absolute left-4 text-lg"><i class="fa fa-arrow-left"></i></a>
+        <h2 class="text-lg font-bold">Daftar Nilai</h2>
+        <button id="darkToggle" class="absolute right-4 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-lg text-black dark:text-white text-sm">
+            🌙
+        </button>
+    </div>
+
+    <div class="p-4 flex-1 pb-28">
+        
+        <div class="bg-gray-200 dark:bg-gray-700 rounded-full p-1 flex mb-4">
+            <a href="khs.html" class="flex-1 text-gray-600 dark:text-gray-300 rounded-full py-2 text-sm font-semibold text-center hover:bg-blue-100 dark:hover:bg-blue-700 transition">
+                Kartu Hasil Studi
+            </a>
+            <a href="nilai.html" class="flex-1 bg-white dark:bg-blue-600 text-blue-600 dark:text-white rounded-full py-2 text-sm font-semibold text-center hover:bg-blue-100 dark:hover:bg-blue-700 transition">
+                Daftar Nilai
+            </a>
+        </div>
+
+        <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-4 mb-4 grid grid-cols-3 gap-2">
+            <div class="text-center">
+                <div class="bg-darkviolet text-white rounded-lg p-2 font-bold">A: 5</div>
+            </div>
+            <div class="text-center">
+                <div class="bg-blue-500 text-white rounded-lg p-2 font-bold">AB: 2</div>
+            </div>
+            <div class="text-center">
+                <div class="bg-green-500 text-white rounded-lg p-2 font-bold">B: 1</div>
+            </div>
+            <div class="text-center">
+                <div class="bg-yellow-500 text-white rounded-lg p-2 font-bold">BC: 0</div>
+            </div>
+            <div class="text-center">
+                <div class="bg-orangeCustom text-white rounded-lg p-2 font-bold">C: 0</div>
+            </div>
+            <div class="text-center">
+                <div class="bg-gray-500 text-white rounded-lg p-2 font-bold">CD: 0</div>
+            </div>
+            <div class="text-center">
+                <div class="bg-gray-500 text-white rounded-lg p-2 font-bold">D: 0</div>
+            </div>
+            <div class="text-center">
+                <div class="bg-gray-500 text-white rounded-lg p-2 font-bold">DE: 0</div>
+            </div>
+            <div class="text-center">
+                <div class="bg-gray-500 text-white rounded-lg p-2 font-bold">E: 0</div>
+            </div>
+        </div>
+        
+        <h3 class="text-md font-semibold mb-2">Daftar Nilai Mata Kuliah</h3>
+        <div class="space-y-2">
+            <!-- Nilai A -->
+            <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-3 flex items-center">
+                <div class="bg-darkviolet text-white rounded-lg p-2 w-10 h-10 flex items-center justify-center font-bold text-lg">A</div>
+                <div class="ml-3 flex-1">
+                    <p class="font-semibold text-sm">Kompleksitas Algoritma</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">#F2340042</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">Dosen: Muhammad Sam'an, S.Si., M.Mat</p>
+                </div>
+                <div class="text-darkviolet font-bold text-lg">A</div>
+            </div>
+
+            <!-- Nilai AB -->
+            <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-3 flex items-center">
+                <div class="bg-blue-500 text-white rounded-lg p-2 w-10 h-10 flex items-center justify-center font-bold text-lg">AB</div>
+                <div class="ml-3 flex-1">
+                    <p class="font-semibold text-sm">Basis Data</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">#F2340043</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">Dosen: Dr. Rina Wati</p>
+                </div>
+                <div class="text-blue-500 font-bold text-lg">AB</div>
+            </div>
+
+            <!-- Nilai B -->
+            <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-3 flex items-center">
+                <div class="bg-green-500 text-white rounded-lg p-2 w-10 h-10 flex items-center justify-center font-bold text-lg">B</div>
+                <div class="ml-3 flex-1">
+                    <p class="font-semibold text-sm">Data Mining</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">#F2340042</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">Dosen: Muhammad Sam'an, S.Si., M.Mat</p>
+                </div>
+                <div class="text-green-500 font-bold text-lg">B</div>
+            </div>
+
+            <!-- Nilai A -->
+            <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-3 flex items-center">
+                <div class="bg-darkviolet text-white rounded-lg p-2 w-10 h-10 flex items-center justify-center font-bold text-lg">A</div>
+                <div class="ml-3 flex-1">
+                    <p class="font-semibold text-sm">Pengembangan Aplikasi Web</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">#F2340045</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">Dosen: R. Agus Setiawan, S.Kom., M.Cs.</p>
+                </div>
+                <div class="text-darkviolet font-bold text-lg">A</div>
+            </div>
+
+            <!-- Contoh Nilai BC -->
+            <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-3 flex items-center">
+                <div class="bg-yellow-500 text-white rounded-lg p-2 w-10 h-10 flex items-center justify-center font-bold text-lg">BC</div>
+                <div class="ml-3 flex-1">
+                    <p class="font-semibold text-sm">Contoh Mata Kuliah</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">#F2340046</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">Dosen: Nama Dosen</p>
+                </div>
+                <div class="text-yellow-500 font-bold text-lg">BC</div>
+            </div>
+
+            <!-- Contoh Nilai C -->
+            <div class="bg-white dark:bg-gray-700 rounded-xl shadow p-3 flex items-center">
+                <div class="bg-orangeCustom text-white rounded-lg p-2 w-10 h-10 flex items-center justify-center font-bold text-lg">C</div>
+                <div class="ml-3 flex-1">
+                    <p class="font-semibold text-sm">Contoh Mata Kuliah 2</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">#F2340047</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-300">Dosen: Nama Dosen</p>
+                </div>
+                <div class="text-orangeCustom font-bold text-lg">C</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex justify-around py-3">
+        <a href="home.html" class="flex flex-col items-center">
+            <i class="fa fa-home text-lg"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jadwal.html" class="flex flex-col items-center">
+            <i class="fa fa-calendar-alt text-lg"></i>
+            <span class="text-xs">Jadwal</span>
+        </a>
+        <a href="chatbot.html" class="flex flex-col items-center">
+            <i class="fa fa-comments text-lg"></i>
+            <span class="text-xs">Chat</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center">
+            <i class="fa fa-user text-lg"></i>
+            <span class="text-xs">Profile</span>
+        </a>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('darkToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+
+</body>
+</html>

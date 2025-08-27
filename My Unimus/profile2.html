@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white font-sans min-h-screen flex flex-col">
+
+    <!-- Header -->
+<div class="bg-blue-900 dark:bg-gray-800 text-white p-4 relative flex items-center justify-between">
+    <!-- Tombol Kembali -->
+    <a href="dashboard.html" class="text-lg z-10"><i class="fa fa-arrow-left"></i></a>
+
+    <!-- Judul Tengah -->
+    <h2 class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg font-bold">
+        Profile
+    </h2>
+
+    <!-- Tombol kanan -->
+    <div class="flex items-center space-x-2 z-10">
+        <button id="darkToggle" class="bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-lg text-black dark:text-white text-sm">
+            🌙
+        </button>
+        <button class="bg-blue-500 text-white px-2 py-1 rounded-lg text-xs">ID | EN</button>
+    </div>
+</div>
+
+    <!-- Foto Profile -->
+    <div class="flex justify-center mt-6 relative">
+        <img src="Images/richmond.jpg" class="rounded-full w-24 h-24 border-4 border-blue-500">
+    </div>
+
+    <!-- Info Profile -->
+<div class="p-5 mt-5">
+    <div class="bg-white dark:bg-gray-700 p-5 rounded-xl shadow space-y-5">
+        <p class="text-sm"><span class="font-bold">Nama Lengkap:</span> Richmond Ampah Mensah</p>
+        <p class="text-sm"><span class="font-bold">NIM:</span> C2C023012</p>
+        <p class="text-sm"><span class="font-bold">Fakultas:</span> Teknik Informatika</p>
+        <p class="text-sm"><span class="font-bold">Prodi:</span> Informatika</p>
+        <p class="text-sm"><span class="font-bold">Semester:</span> 5</p>
+        <p class="text-sm"><span class="font-bold">Email:</span> richmondampah@gmail.com</p>
+        <p class="text-sm"><span class="font-bold">Phone:</span> 0881080248557</p>
+        <p class="text-sm"><span class="font-bold">Dosen Wali:</span> Dr. Muhamad Munsyarif, S.Kom, M.Kom, PhD</p>
+    </div>
+
+    <!-- Tombol Aksi -->
+    <div class="mt-6 space-y-3 mb-20">
+        <button class="w-full border border-blue-500 text-blue-500 dark:border-blue-400 dark:text-blue-400 font-semibold py-2 rounded-xl
+        hover:bg-blue-500 hover:text-white dark:hover:bg-blue-400 dark:hover:text-gray-900 transition-colors duration-200">
+        Edit Profile
+        </button>
+
+        <button class="w-full border border-red-500 text-red-500 dark:border-red-400 dark:text-red-400 font-semibold py-2 rounded-xl
+        hover:bg-red-500 hover:text-white dark:hover:bg-red-400 dark:hover:text-gray-900 transition-colors duration-200"
+        onclick="window.location.href='login.html'">
+        Logout
+</button>
+
+    </div>
+</div>
+
+    <!-- Bottom Navigation -->
+    <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex justify-around py-3">
+        <a href="dashboard.html" class="flex flex-col items-center">
+            <i class="fa fa-home text-lg"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jadwal.html" class="flex flex-col items-center">
+            <i class="fa fa-calendar-alt text-lg"></i>
+            <span class="text-xs">Jadwal</span>
+        </a>
+        <a href="chatbot.html" class="flex flex-col items-center">
+            <i class="fa fa-comments text-lg"></i>
+            <span class="text-xs">Chat</span>
+        </a>
+        <a href="profile2.html" class="flex flex-col items-center text-blue-600 dark:text-blue-400">
+            <i class="fa fa-user text-lg"></i>
+            <span class="text-xs">Profile</span>
+        </a>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('darkToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+
+</body>
+</html>

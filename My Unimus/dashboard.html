@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - MyUnimus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+    /* Beri jarak bawah pada bagian Prestasi Mahasiswa */
+    .prestasi-mahasiswa {
+        margin-bottom: 6rem; /* sekitar 96px, sesuai kebutuhan */
+    }
+
+    .prestasi-mahasiswa ul {
+    list-style: none; /* hapus bullet default */
+    padding: 0;
+    margin: 0;
+    }
+
+    .prestasi-item {
+        border-bottom: 1px solid rgba(0,0,0,0.1); /* garis tipis antar item */
+        padding-bottom: 8px;
+    }
+
+    .prestasi-item:last-child {
+        border-bottom: none; /* hapus garis bawah item terakhir */
+    }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white font-sans min-h-screen flex flex-col">
+
+    <div class="bg-blue-900 dark:bg-gray-800 text-white p-6 rounded-b-3xl">
+        <div class="flex flex-col items-center">
+            <img src="Images/richmond.jpg" alt="Profile" class="w-24 h-24 rounded-full border-4 border-white">
+            <h2 class="mt-3 text-lg font-bold">Richmond Ampah Mensah</h2>
+            <p class="text-sm">C2C023012</p>
+            <p class="text-sm text-blue-200 dark:text-blue-300">Fakultas Teknik dan Ilmu Komputer</p>
+            <p class="text-sm">Teknik Informatika</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 text-center mt-5 bg-white dark:bg-gray-700 text-black dark:text-white rounded-xl p-4">
+            <div>
+                <p class="text-gray-500 dark:text-gray-300 text-xs">Status</p>
+                <p class="font-bold text-blue-600 dark:text-blue-400">AKTIF</p>
+            </div>
+            <div>
+                <p class="text-gray-500 dark:text-gray-300 text-xs">Jumlah SKS</p>
+                <p class="font-bold">105</p>
+            </div>
+            <div>
+                <p class="text-gray-500 dark:text-gray-300 text-xs">IP Kumulatif</p>
+                <p class="font-bold">3.7</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-4 text-right">
+        <button id="darkToggle" class="bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg">
+            <i class="fa fa-moon text-gray-700 dark:text-yellow-400"></i> Dark Mode
+        </button>
+    </div>
+
+    <div class="p-4 flex-1">
+        <h3 class="text-lg font-semibold mb-3">Menu Sistem Informasi</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+
+            <button class="bg-white dark:bg-gray-700 p-3 rounded-xl shadow flex flex-col items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition cursor-pointer" onclick="window.location.href='KRS.html'">
+                <i class="fa fa-book text-blue-600 dark:text-blue-400 text-xl"></i>
+                <p class="text-xs mt-2">Kartu Rencana Studi</p>
+            </button>
+
+            <button class="bg-white dark:bg-gray-700 p-3 rounded-xl shadow flex flex-col items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition cursor-pointer" onclick="window.location.href='KHS.html'">
+                <i class="fa fa-file-alt text-green-600 dark:text-green-400 text-xl"></i>
+                <p class="text-xs mt-2">Kartu Hasil Studi</p>
+            </button>
+
+            <button class="bg-white dark:bg-gray-700 p-3 rounded-xl shadow flex flex-col items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition cursor-pointer" onclick="window.location.href='transkip.html'">
+                <i class="fa fa-graduation-cap text-purple-600 dark:text-purple-400 text-xl"></i>
+                <p class="text-xs mt-2">Transkip Akademik</p>
+            </button>
+
+            <button class="bg-white dark:bg-gray-700 p-3 rounded-xl shadow flex flex-col items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition cursor-pointer" onclick="window.location.href='kalender.html'">
+                <i class="fa fa-calendar text-orange-600 dark:text-orange-400 text-xl"></i>
+                <p class="text-xs mt-2">Kalender Akademik</p>
+            </button>
+
+            <button class="bg-white dark:bg-gray-700 p-3 rounded-xl shadow flex flex-col items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition cursor-pointer" onclick="window.location.href='event.html'">
+                <i class="fa fa-bullhorn text-pink-600 dark:text-pink-400 text-xl"></i>
+                <p class="text-xs mt-2">Event</p>
+            </button>
+
+            <button class="bg-white dark:bg-gray-700 p-3 rounded-xl shadow flex flex-col items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition cursor-pointer" onclick="window.location.href='ujian.html'">
+                <i class="fa fa-clipboard-check text-blue-400 text-xl"></i>
+                <p class="text-xs mt-2">Ujian</p>
+            </button>
+
+            <button class="bg-white dark:bg-gray-700 p-3 rounded-xl shadow flex flex-col items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition cursor-pointer" onclick="window.location.href='pembayaran.html'">
+                <i class="fa fa-credit-card text-red-500 dark:text-red-400 text-xl"></i>
+                <p class="text-xs mt-2">Pembayaran</p>
+            </button>
+
+            <button class="bg-white dark:bg-gray-700 p-3 rounded-xl shadow flex flex-col items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600 transition cursor-pointer"  onclick="window.location.href='kehadiran.html'">
+                <i class="fa fa-user-check text-yellow-500 dark:text-yellow-400 text-xl"></i>
+                <p class="text-xs mt-2">Kehadiran</p>
+            </button>
+
+        </div>
+    </div>
+
+        <div class="prestasi-mahasiswa p-4">
+        <h3 class="text-lg font-semibold mb-4">Prestasi Mahasiswa</h3>
+        <div class="grid gap-3">
+            <div class="bg-white dark:bg-gray-700 p-4 rounded-xl shadow">
+                <p class="font-bold text-sm">TOEFL</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xs mt-1">Educational Language Center International</p>
+            </div>
+            <div class="bg-white dark:bg-gray-700 p-4 rounded-xl shadow">
+                <p class="font-bold text-sm">Mobile Developer</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xs mt-1">MySkill</p>
+            </div>
+            <div class="bg-white dark:bg-gray-700 p-4 rounded-xl shadow">
+                <p class="font-bold text-sm">Software Engineering</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xs mt-1">Revou</p>
+            </div>
+            <div class="bg-white dark:bg-gray-700 p-4 rounded-xl shadow">
+                <p class="font-bold text-sm">Data Analytics</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xs mt-1">Revou</p>
+            </div>
+            <div class="bg-white dark:bg-gray-700 p-4 rounded-xl shadow">
+                <p class="font-bold text-sm">Mobile Designer</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xs mt-1">MySkill</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex justify-around py-3">
+        <a href="home.html" class="flex flex-col items-center text-blue-600 dark:text-blue-400">
+            <i class="fa fa-home text-lg"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jadwal.html" class="flex flex-col items-center">
+            <i class="fa fa-calendar-alt text-lg"></i>
+            <span class="text-xs">Jadwal</span>
+        </a>
+        <a href="chatbot.html" class="flex flex-col items-center">
+            <i class="fa fa-comments text-lg"></i>
+            <span class="text-xs">Chat</span>
+        </a>
+        <a href="profile2.html" class="flex flex-col items-center">
+            <i class="fa fa-user text-lg"></i>
+            <span class="text-xs">Profile</span>
+        </a>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('darkToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+
+</body>
+</html>

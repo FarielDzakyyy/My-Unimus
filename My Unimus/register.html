@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - MyUnimus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: url('images/background.jpg') center/cover;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: url('images/unimus_globe.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .content {
+            flex: 1;
+            background: white;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(245, 245, 245, 0.9);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .tab.active {
+            background: white;
+            color: #2196F3;
+        }
+
+        .form-container {
+            padding: 30px 20px;
+            overflow-y: auto;
+        }
+
+        .form-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #2196F3;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1976d2;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #1976d2;
+        }
+
+        .link-text {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .link-text a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                min-height: 80vh;
+                margin: 100px auto;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>UNIVERSITAS MUHAMMADIYAH SEMARANG</h1>
+            <p>Sistem Informasi Akademik</p>
+        </div>
+
+        <div class="content">
+            <div class="tabs">
+                <button class="tab" onclick="window.location.href='login.html'">Masuk</button>
+                <button class="tab active">Daftar</button>
+            </div>
+
+            <div class="form-container">
+                <p class="form-description">
+                    Masukkan detail Anda untuk mendaftar sebagai mahasiswa
+                </p>
+
+                <form id="registerForm" method="POST" action="register.php">
+                    <div class="form-group">
+                        <label for="fullName">Nama Lengkap</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Masukkan Nama Lengkap Anda" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Alamat Email</label>
+                        <input type="email" id="email" name="email" placeholder="Masukkan Email Anda" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nim">Nomor Induk Mahasiswa</label>
+                        <input type="text" id="nim" name="nim" placeholder="Masukkan Nomor Induk Mahasiswa Anda" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Kata Sandi</label>
+                        <input type="password" id="password" name="password" placeholder="Buat Kata Sandi Anda" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Daftar</button>
+
+                    <p class="link-text">
+                        Sudah punya akun? <a href="login.html">Masuk</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+</html>

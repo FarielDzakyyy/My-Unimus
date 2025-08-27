@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Hasil Studi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+        .transition-transform {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white font-sans min-h-screen flex flex-col">
+
+    <div class="bg-blue-900 dark:bg-gray-800 text-white p-4 flex items-center justify-center relative">
+        <a href="home.html" class="absolute left-4 text-lg"><i class="fa fa-arrow-left"></i></a>
+        <h2 class="text-lg font-bold">Kartu Hasil Studi</h2>
+        <button id="darkToggle" class="absolute right-4 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-lg text-black dark:text-white text-sm">
+            🌙
+        </button>
+    </div>
+
+    <div class="p-4 flex-1 pb-28">
+
+        <div class="bg-gray-200 dark:bg-gray-700 rounded-full p-1 flex mb-4">
+            <a href="khs.html" class="flex-1 bg-white dark:bg-blue-600 text-blue-600 dark:text-white rounded-full py-2 text-sm font-semibold text-center hover:bg-blue-100 dark:hover:bg-blue-700 transition">
+                Kartu Hasil Studi
+            </a>
+            <a href="nilai.html" class="flex-1 text-gray-600 dark:text-gray-300 rounded-full py-2 text-sm font-semibold text-center hover:bg-blue-100 dark:hover:bg-blue-700 transition">
+                Daftar Nilai
+            </a>
+        </div>
+
+        <div id="semester-list">
+            <h3 class="text-md font-semibold mb-2">DATA KHS MAHASISWA</h3>
+            <div class="space-y-4 mt-4">
+                <button onclick="showGradesDetails('semester5')" class="w-full bg-green-500 text-white p-4 rounded-xl shadow font-semibold text-center transition duration-300 ease-in-out hover:bg-green-600">
+                    KRS 2025 - 2026 Ganjil
+                </button>
+                <button onclick="showGradesDetails('semester4')" class="w-full bg-blue-500 text-white p-4 rounded-xl shadow font-semibold text-center transition duration-300 ease-in-out hover:bg-blue-600">
+                    KRS 2024 - 2025 Genap
+                </button>
+                <button onclick="showGradesDetails('semester3')" class="w-full bg-blue-500 text-white p-4 rounded-xl shadow font-semibold text-center transition duration-300 ease-in-out hover:bg-blue-600">
+                    KRS 2024 - 2025 Ganjil
+                </button>
+                <button onclick="showGradesDetails('semester2')" class="w-full bg-blue-500 text-white p-4 rounded-xl shadow font-semibold text-center transition duration-300 ease-in-out hover:bg-blue-600">
+                    KRS 2023 - 2024 Genap
+                </button>
+                <button onclick="showGradesDetails('semester1')" class="w-full bg-blue-500 text-white p-4 rounded-xl shadow font-semibold text-center transition duration-300 ease-in-out hover:bg-blue-600">
+                    KRS 2023 - 2024 Ganjil
+                </button>
+            </div>
+        </div>
+
+        <div id="grades-details" class="hidden">
+            <h3 class="text-md font-semibold mb-2">DATA KHS MAHASISWA</h3>
+            <p id="semesterLabel" class="text-sm text-gray-500 dark:text-gray-400 mb-4"></p>
+            <div id="grades-details-content" class="space-y-4">
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex justify-around py-3">
+        <a href="home.html" class="flex flex-col items-center">
+            <i class="fa fa-home text-lg"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jadwal.html" class="flex flex-col items-center">
+            <i class="fa fa-calendar-alt text-lg"></i>
+            <span class="text-xs">Jadwal</span>
+        </a>
+        <a href="chatbot.html" class="flex flex-col items-center">
+            <i class="fa fa-comments text-lg"></i>
+            <span class="text-xs">Chat</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center">
+            <i class="fa fa-user text-lg"></i>
+            <span class="text-xs">Profile</span>
+        </a>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('darkToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        const semestersData = {
+            'semester5': {
+                label: 'KRS 2025 - 2026 Ganjil',
+                grades: [
+                    { nama: 'Kompleksitas Algoritma', kode: '#F2340042', total: '94.6', sks: '2 SKS', kehadiran: '95', uts: '90', uas: '89', tugas: '100', dosen: 'Muhammad Sam\'an, S.Si., M.Mat' },
+                    { nama: 'Data Mining', kode: '#F2340042', total: '72', sks: '3 SKS', kehadiran: '95', uts: '60', uas: '70', tugas: '89', dosen: 'Muhammad Sam\'an, S.Si., M.Mat' },
+                    { nama: 'Basis Data', kode: '#F2340043', total: '88', sks: '3 SKS', kehadiran: '90', uts: '85', uas: '90', tugas: '95', dosen: 'Dr. Rina Wati' }
+                ]
+            },
+            'semester4': {
+                label: 'KRS 2024 - 2025 Genap',
+                grades: [
+                    { nama: 'Struktur Data', kode: '#F2340010', total: '85', sks: '3 SKS', kehadiran: '90', uts: '80', uas: '85', tugas: '95', dosen: 'Budi Santoso, M.Kom' },
+                    { nama: 'Jaringan Komputer', kode: '#F2340011', total: '91', sks: '4 SKS', kehadiran: '100', uts: '90', uas: '92', tugas: '90', dosen: 'Iwan Setiawan, M.Eng' }
+                ]
+            },
+            'semester3': {
+                label: 'KRS 2024 - 2025 Ganjil',
+                grades: [
+                    { nama: 'Struktur Data', kode: '#F2340010', total: '85', sks: '3 SKS', kehadiran: '90', uts: '80', uas: '85', tugas: '95', dosen: 'Budi Santoso, M.Kom' },
+                    { nama: 'Jaringan Komputer', kode: '#F2340011', total: '91', sks: '4 SKS', kehadiran: '100', uts: '90', uas: '92', tugas: '90', dosen: 'Iwan Setiawan, M.Eng' }
+                ]
+            },
+            'semester2': {
+                label: 'KRS 2023 - 2024 Genap',
+                grades: [
+                    { nama: 'Struktur Data', kode: '#F2340010', total: '85', sks: '3 SKS', kehadiran: '90', uts: '80', uas: '85', tugas: '95', dosen: 'Budi Santoso, M.Kom' },
+                    { nama: 'Jaringan Komputer', kode: '#F2340011', total: '91', sks: '4 SKS', kehadiran: '100', uts: '90', uas: '92', tugas: '90', dosen: 'Iwan Setiawan, M.Eng' }
+                ]
+            },
+            'semester1': {
+                label: 'KRS 2023 - 2024 Ganjil',
+                grades: [
+                    { nama: 'Struktur Data', kode: '#F2340010', total: '85', sks: '3 SKS', kehadiran: '90', uts: '80', uas: '85', tugas: '95', dosen: 'Budi Santoso, M.Kom' },
+                    { nama: 'Jaringan Komputer', kode: '#F2340011', total: '91', sks: '4 SKS', kehadiran: '100', uts: '90', uas: '92', tugas: '90', dosen: 'Iwan Setiawan, M.Eng' }
+                ]
+            },
+        };
+
+        const semesterList = document.getElementById('semester-list');
+        const gradesDetails = document.getElementById('grades-details');
+        const semesterLabel = document.getElementById('semesterLabel');
+        const gradesDetailsContent = document.getElementById('grades-details-content');
+
+        function showGradesDetails(semesterId) {
+            const data = semestersData[semesterId];
+            if (data) {
+                semesterLabel.textContent = data.label;
+                let htmlContent = '';
+                data.grades.forEach(grade => {
+                    htmlContent += `
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-xl shadow cursor-pointer" onclick="toggleDetails(this)">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center">
+                                    <p class="font-bold text-sm">${grade.nama}</p>
+                                </div>
+                                <p class="text-xs text-blue-500 font-semibold">${grade.kode}</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-green-500 text-white rounded-xl p-4 text-center flex-shrink-0 w-24 mr-4">
+                                    <p class="text-xs">Total</p>
+                                    <p class="font-bold text-2xl">${grade.total}</p>
+                                </div>
+                                <div class="flex-1 text-xs text-gray-600 dark:text-gray-300">
+                                    <p>Kehadiran: ${grade.kehadiran}</p>
+                                    <p>UTS: ${grade.uts}</p>
+                                    <p>UAS: ${grade.uas}</p>
+                                    <p>Tugas: ${grade.tugas}</p>
+                                    <p class="mt-2">Dosen: ${grade.dosen}</p>
+                                </div>
+                                <p class="text-xs font-semibold text-gray-500 dark:text-gray-400">${grade.sks}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                gradesDetailsContent.innerHTML = htmlContent;
+
+                semesterList.classList.add('hidden');
+                gradesDetails.classList.remove('hidden');
+            }
+        }
+        
+        function showSemesterList() {
+            gradesDetails.classList.add('hidden');
+            semesterList.classList.remove('hidden');
+        }
+
+        function toggleDetails(card) {
+            const detailsDiv = card.querySelector('.flex-1');
+            detailsDiv.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot My Unimus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        /* Perbaikan utama pada struktur layout */
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            padding-bottom: 6rem; /* Ruang lebih besar untuk input */
+        }
+        
+        .input-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .dark .input-container {
+            background: #1f2937;
+            border-top: 1px solid #374151;
+        }
+        
+        /* Memastikan scroll ke bawah otomatis */
+        .message-container {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white font-sans">
+
+    <!-- Header -->
+    <div class="bg-blue-900 dark:bg-gray-800 text-white p-4 flex items-center justify-center relative">
+        <a href="home.html" class="absolute left-4 text-lg"><i class="fa fa-arrow-left"></i></a>
+        <h2 class="text-lg font-bold">Chatbot</h2>
+        <button id="darkToggle" class="absolute right-4 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-lg text-black dark:text-white text-sm">
+            🌙
+        </button>
+    </div>
+
+    <!-- Area Chat -->
+    <div class="chat-container" id="chatArea">
+        <!-- Welcome Message -->
+        <div class="flex justify-start">
+            <div class="bg-gray-300 dark:bg-gray-700 text-black dark:text-white p-3 rounded-xl max-w-xs">
+                Halo! Saya adalah asisten virtual My Unimus. Ada yang bisa saya bantu?
+                <div class="mt-2 text-sm text-blue-200 dark:text-blue-300">
+                    Anda bisa bertanya tentang: jadwal, nilai, KRS, pembayaran, atau registrasi.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Chat -->
+    <div class="input-container flex items-center space-x-2">
+        <input type="text" id="userInput" placeholder="Ketik pesan..." class="flex-1 rounded-xl border border-gray-300 dark:border-gray-600 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <button id="sendBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl">
+            Kirim
+        </button>
+    </div>
+
+<script>
+    const toggleBtn = document.getElementById('darkToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+    const sendBtn = document.getElementById('sendBtn');
+    const userInput = document.getElementById('userInput');
+    const chatArea = document.getElementById('chatArea');
+
+    // Knowledge base for My Unimus
+    const knowledgeBase = {
+        // Authentication
+        'login': 'Anda bisa login ke My Unimus menggunakan NIM dan password di https://my.unimus.ac.id',
+        'lupa password': 'Jika lupa password, silakan hubungi bagian IT di gedung rektorat lantai 2 atau email it@unimus.ac.id',
+        
+        // Academic
+        'jadwal': {
+            response: 'Jadwal kuliah dapat dilihat di menu "Jadwal Kuliah" di My Unimus.',
+            followUp: 'Apakah Anda ingin mengetahui jadwal khusus hari tertentu?'
+        },
+        'nilai': 'Nilai dapat dilihat di menu "Kartu Hasil Studi (KHS)" di My Unimus.',
+        'khs': 'KHS (Kartu Hasil Studi) berisi nilai dan IPK semester, bisa diakses di menu "KHS"',
+        'transkrip': 'Transkrip nilai resmi bisa diunduh di menu "Transkrip Nilai" atau minta ke bagian akademik',
+        'krs': 'Pengisian KRS dilakukan di awal semester melalui menu "KRS Online" di My Unimus',
+        'sks': 'Batas maksimal SKS per semester adalah 24, kecuali untuk mahasiswa dengan IPK >3.5 bisa mengambil 26 SKS',
+        
+        // Registration
+        'registrasi': 'Registrasi dilakukan setiap awal semester melalui menu "Registrasi Online"',
+        'her registrasi': 'HER registrasi bisa dilakukan di awal bulan dengan membayar biaya keterlambatan',
+        'cuti': 'Pengajuan cuti akademik harus melalui persetujuan dosen wali dan bagian akademik',
+        
+        // Payment
+        'pembayaran': 'Pembayaran bisa dilakukan via transfer bank atau virtual account melalui menu "Pembayaran"',
+        'biaya kuliah': 'Biaya kuliah bervariasi berdasarkan program studi. Info lengkap di bagian keuangan',
+        'ukt': 'UKT bisa dicicil maksimal 3x dengan mengajukan permohonan ke bagian keuangan',
+        'beasiswa': 'Info beasiswa tersedia di menu "Beasiswa" atau hubungi bagian kemahasiswaan',
+        
+        // Facilities
+        'perpustakaan': 'Perpustakaan buka Senin-Jumat jam 08.00-16.00. Akses katalog online di library.unimus.ac.id',
+        'laboratorium': 'Pemakaian lab harus dengan jadwal yang sudah ditentukan oleh prodi masing-masing',
+        
+        // General
+        'kontak': 'Anda bisa menghubungi:\n- Akademik: 024-1234567\n- Keuangan: 024-1234568\n- Kemahasiswaan: 024-1234569',
+        'help': 'Saya bisa membantu dengan:\n- Informasi akademik (jadwal, nilai, KRS)\n- Registrasi dan administrasi\n- Pembayaran dan keuangan\n- Fasilitas kampus\n\nCoba tanyakan salah satu topik di atas!'
+    };
+
+    // Function to find the best matching response
+    function findResponse(message) {
+        message = message.toLowerCase();
+        
+        // Check for exact matches first
+        for (const key in knowledgeBase) {
+            if (message === key.toLowerCase()) {
+                return typeof knowledgeBase[key] === 'object' ? knowledgeBase[key].response : knowledgeBase[key];
+            }
+        }
+        
+        // Check for partial matches
+        for (const key in knowledgeBase) {
+            if (message.includes(key.toLowerCase())) {
+                return typeof knowledgeBase[key] === 'object' ? knowledgeBase[key].response : knowledgeBase[key];
+            }
+        }
+        
+        // If no match found
+        return null;
+    }
+
+    // Function to add message to chat
+    function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = isUser ? 'flex justify-end mb-2' : 'flex justify-start mb-2';
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = isUser 
+            ? 'bg-blue-500 text-white p-3 rounded-xl max-w-xs' 
+            : 'bg-gray-300 dark:bg-gray-700 text-black dark:text-white p-3 rounded-xl max-w-xs';
+        
+        // Preserve line breaks in the response
+        contentDiv.innerHTML = text.replace(/\n/g, '<br>');
+        
+        messageDiv.appendChild(contentDiv);
+        chatArea.appendChild(messageDiv);
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    // Function to handle API calls
+    async function handleAPIRequest(message) {
+        // Simulate API call for jadwal
+        if (/jadwal|kapan.*kuliah|kuliah.*kapan/i.test(message)) {
+            addMessage('Sedang mengambil data jadwal Anda...', false);
+            
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Sample data - in real app this would come from API
+            const sampleJadwal = [
+                { hari: 'Senin', mata_kuliah: 'Pemrograman Web', jam: '08.00-10.00', ruang: 'Lab. Komputer 1' },
+                { hari: 'Selasa', mata_kuliah: 'Basis Data', jam: '10.00-12.00', ruang: 'Ruang 302' },
+                { hari: 'Rabu', mata_kuliah: 'Jaringan Komputer', jam: '13.00-15.00', ruang: 'Lab. Jaringan' }
+            ];
+            
+            let jadwalText = '📅 Jadwal Kuliah Anda:\n\n';
+            sampleJadwal.forEach(item => {
+                jadwalText += `📌 ${item.hari}: ${item.mata_kuliah}\n🕒 ${item.jam}\n🏫 ${item.ruang}\n\n`;
+            });
+            
+            addMessage(jadwalText, false);
+            return true;
+        }
+        
+        // Simulate API call for nilai
+        if (/nilai|khs|ipk|indeks prestasi/i.test(message)) {
+            addMessage('Sedang mengambil data nilai Anda...', false);
+            
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            const sampleNilai = [
+                { mata_kuliah: 'Pemrograman Web', nilai: 'A', sks: 3 },
+                { mata_kuliah: 'Basis Data', nilai: 'B+', sks: 4 },
+                { mata_kuliah: 'Jaringan Komputer', nilai: 'A-', sks: 3 }
+            ];
+            
+            let nilaiText = '📊 Nilai Anda Semester Ini:\n\n';
+            sampleNilai.forEach(item => {
+                nilaiText += `📚 ${item.mata_kuliah}: ${item.nilai} (${item.sks} SKS)\n`;
+            });
+            
+            nilaiText += '\nIPK Semester: 3.75';
+            addMessage(nilaiText, false);
+            return true;
+        }
+        
+        return false;
+    }
+
+    // Event handler for sending messages
+    sendBtn.addEventListener('click', async () => {
+        const message = userInput.value.trim();
+        if (message === '') return;
+        
+        // Add user message
+        addMessage(message, true);
+        userInput.value = '';
+        
+        // Check if this is a greeting
+        if (/halo|hai|hi|helo|hello|assalamualaikum|selamat (pagi|siang|sore|malam)/i.test(message)) {
+            addMessage('Halo! Ada yang bisa saya bantu terkait My Unimus?', false);
+            return;
+        }
+        
+        // Check if this requires API call
+        const apiHandled = await handleAPIRequest(message);
+        if (apiHandled) return;
+        
+        // Find response from knowledge base
+        const response = findResponse(message);
+        
+        if (response) {
+            addMessage(response, false);
+        } else {
+            addMessage('Maaf, saya tidak mengerti pertanyaan Anda. Coba tanyakan tentang:\n- Jadwal kuliah\n- Nilai akademik\n- Pembayaran\n- Registrasi\n\nAtau ketik "help" untuk bantuan lebih lanjut.', false);
+        }
+    });
+
+    // Enter key to send
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendBtn.click();
+    });
+</script>
+
+</body>
+</html>

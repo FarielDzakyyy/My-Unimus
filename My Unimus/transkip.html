@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transkrip Akademik - MyUnimus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        .grade-A {
+            color: darkorchid; /* green-500 */
+        }
+        .grade-B {
+            color: green; /* yellow-500 */
+        }
+        .grade-C {
+            color: orange; /* red-500 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white font-sans min-h-screen flex flex-col">
+
+    <div class="bg-blue-900 dark:bg-gray-800 text-white p-4 flex items-center justify-center relative shadow-md">
+        <a href="home.html" class="absolute left-4 text-lg"><i class="fa fa-arrow-left"></i></a>
+        <h2 class="text-lg font-bold">Transkrip Akademik</h2>
+        <button id="darkToggle" class="absolute right-4 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-lg text-black dark:text-white text-sm">
+            🌙
+        </button>
+    </div>
+
+    <div class="p-4 flex-1 pb-28">
+        
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-6">
+            <h3 class="text-lg font-bold mb-3">Ringkasan Prestasi</h3>
+            <div class="grid grid-cols-2 gap-4 text-center">
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <p class="text-gray-500 dark:text-gray-300 text-sm">IP Kumulatif</p>
+                    <p class="text-3xl font-extrabold text-blue-600 dark:text-blue-400 mt-1">3.85</p>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <p class="text-gray-500 dark:text-gray-300 text-sm">Total SKS</p>
+                    <p class="text-3xl font-extrabold mt-1">111</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="text-lg font-bold mb-4">Daftar Mata Kuliah</h3>
+        
+        <div class="space-y-3">
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg flex items-center justify-between">
+                <div>
+                    <p class="text-md font-semibold">Basis Data</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">3 SKS</p>
+                </div>
+                <p class="text-2xl font-bold grade-A">A</p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg flex items-center justify-between">
+                <div>
+                    <p class="text-md font-semibold">Struktur Data</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">4 SKS</p>
+                </div>
+                <p class="text-2xl font-bold grade-A">A</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg flex items-center justify-between">
+                <div>
+                    <p class="text-md font-semibold">Pemrograman Web</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">3 SKS</p>
+                </div>
+                <p class="text-2xl font-bold grade-A">A</p>
+            </div>
+            
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg flex items-center justify-between">
+                <div>
+                    <p class="text-md font-semibold">Desain UI/UX</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">3 SKS</p>
+                </div>
+                <p class="text-2xl font-bold grade-B">B</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl shadow-lg flex items-center justify-between">
+                <div>
+                    <p class="text-md font-semibold">Etika Profesi</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">2 SKS</p>
+                </div>
+                <p class="text-2xl font-bold grade-A">A</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex justify-around py-3">
+        <a href="home.html" class="flex flex-col items-center">
+            <i class="fa fa-home text-lg"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jadwal.html" class="flex flex-col items-center">
+            <i class="fa fa-calendar-alt text-lg"></i>
+            <span class="text-xs">Jadwal</span>
+        </a>
+        <a href="chatbot.html" class="flex flex-col items-center">
+            <i class="fa fa-comments text-lg"></i>
+            <span class="text-xs">Chat</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center text-blue-600 dark:text-blue-400">
+            <i class="fa fa-user text-lg"></i>
+            <span class="text-xs">Profile</span>
+        </a>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('darkToggle');
+        toggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+
+</body>
+</html>

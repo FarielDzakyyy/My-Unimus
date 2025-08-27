@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+        .transition-transform {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white font-sans min-h-screen flex flex-col">
+
+    <div class="bg-blue-900 dark:bg-gray-800 text-white p-4 flex items-center justify-center relative">
+        <a href="home.html" class="absolute left-4 text-lg"><i class="fa fa-arrow-left"></i></a>
+        <h2 class="text-lg font-bold">Kartu Rencana Studi</h2>
+        <button id="darkToggle" class="absolute right-4 bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-lg text-black dark:text-white text-sm">
+            🌙
+        </button>
+    </div>
+
+    <div id="krs-view" class="p-4 flex-1 pb-28">
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-4 mb-4 grid grid-cols-2 gap-4">
+            <div class="bg-blue-500 dark:bg-blue-500 text-white rounded-lg p-3 text-center flex flex-col justify-center items-center">
+                <i class="fa fa-calendar-alt text-xl mb-1"></i>
+                <p class="text-sm font-semibold">Semester Ganjil</p>
+                <p class="text-xs">T.A. 2025/2026</p>
+            </div>
+            <div class="bg-green-500 dark:bg-green-500 text-white rounded-lg p-3 text-center flex flex-col justify-center items-center">
+                <i class="fa fa-book text-xl mb-1"></i>
+                <p class="text-sm font-semibold">21 SKS</p>
+                <p class="text-xs">9 Mata Kuliah</p>
+            </div>
+        </div>
+
+        <h3 class="text-md font-semibold mb-2 text-gray-900 dark:text-white">DATA KRS MAHASISWA</h3>
+        
+        <div class="space-y-4">
+            <div class="bg-green-500 text-white p-4 rounded-xl shadow font-semibold transition duration-300 ease-in-out hover:bg-green-600">
+                <div class="flex justify-between items-center cursor-pointer krs-toggle">
+                    <span>KRS 2025 - 2026 Ganjil</span>
+                    <i class="fa fa-chevron-down transition-transform"></i>
+                </div>
+                <div class="mt-4 text-sm font-normal hidden krs-details">
+                    <div class="bg-white text-gray-800 rounded-lg p-3 mb-2">
+                        <div class="flex justify-between items-center cursor-pointer show-kehadiran-details">
+                            <a href="#" class="font-bold text-gray-800 dark:text-gray-900">Proposal Thesis</a>
+                            <span class="text-xs">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-500 text-white p-4 rounded-xl shadow font-semibold transition duration-300 ease-in-out hover:bg-blue-600">
+                <div class="flex justify-between items-center cursor-pointer krs-toggle">
+                    <span>KRS 2024 - 2025 Genap</span>
+                    <i class="fa fa-chevron-down transition-transform"></i>
+                </div>
+                <div class="mt-4 text-sm font-normal hidden krs-details">
+                    <div class="bg-white text-gray-800 rounded-lg p-3 mb-2">
+                        <div class="flex justify-between items-center cursor-pointer show-kehadiran-details">
+                            <a href="#" class="font-bold text-gray-800 dark:text-gray-900">Mata Kuliah Lain 1</a>
+                            <span class="text-xs">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-500 text-white p-4 rounded-xl shadow font-semibold transition duration-300 ease-in-out hover:bg-blue-600">
+                <div class="flex justify-between items-center cursor-pointer krs-toggle">
+                    <span>KRS 2024 - 2025 Ganjil</span>
+                    <i class="fa fa-chevron-down transition-transform"></i>
+                </div>
+                <div class="mt-4 text-sm font-normal hidden krs-details">
+                    <div class="bg-white text-gray-800 rounded-lg p-3 mb-2">
+                        <div class="flex justify-between items-center cursor-pointer show-kehadiran-details">
+                            <a href="#" class="font-bold text-gray-800 dark:text-gray-900">Mata Kuliah Lain 2</a>
+                            <span class="text-xs">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-500 text-white p-4 rounded-xl shadow font-semibold transition duration-300 ease-in-out hover:bg-blue-600">
+                <div class="flex justify-between items-center cursor-pointer krs-toggle">
+                    <span>KRS 2023 - 2024 Genap</span>
+                    <i class="fa fa-chevron-down transition-transform"></i>
+                </div>
+                <div class="mt-4 text-sm font-normal hidden krs-details">
+                    <div class="bg-white text-gray-800 rounded-lg p-3 mb-2">
+                        <div class="flex justify-between items-center cursor-pointer show-kehadiran-details">
+                            <a href="#" class="font-bold text-gray-800 dark:text-gray-900">Mata Kuliah Lain 3</a>
+                            <span class="text-xs">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-500 text-white p-4 rounded-xl shadow font-semibold transition duration-300 ease-in-out hover:bg-blue-600">
+                <div class="flex justify-between items-center cursor-pointer krs-toggle">
+                    <span>KRS 2023 - 2024 Ganjil</span>
+                    <i class="fa fa-chevron-down transition-transform"></i>
+                </div>
+                <div class="mt-4 text-sm font-normal hidden krs-details">
+                    <div class="bg-white text-gray-800 rounded-lg p-3 mb-2">
+                        <div class="flex justify-between items-center cursor-pointer show-kehadiran-details">
+                            <a href="#" class="font-bold text-gray-800 dark:text-gray-900">Mata Kuliah Lain 4</a>
+                            <span class="text-xs">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="kehadiran-view" class="flex-1 flex flex-col hidden">
+
+        <div class="p-4 flex-1 pb-28">
+            <div class="bg-gray-200 dark:bg-gray-700 rounded-lg p-4 text-center text-sm shadow-md mb-4">
+                <p class="text-gray-500 dark:text-gray-300">Detail Hadir Mahasiswa</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+                    <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-2 mb-2">
+                        <h2 class="font-bold">Pertemuan 1</h2>
+                        <span class="text-sm text-gray-400">15 September 2025</span>
+                    </div>
+                    <div class="text-sm text-gray-600 dark:text-gray-300">
+                        <p class="text-green-500 font-bold mb-1">Hadir</p>
+                        <p>Presentase: 95%</p>
+                        <p>07:50 - 12:00</p>
+                        <p>B.203</p>
+                        <p class="text-blue-500 font-semibold mt-1">Basis Data</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+                    <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-2 mb-2">
+                        <h2 class="font-bold">Pertemuan 2</h2>
+                        <span class="text-sm text-gray-400">25 September 2025</span>
+                    </div>
+                    <div class="text-sm text-gray-600 dark:text-gray-300">
+                        <p class="text-green-500 font-bold mb-1">Hadir</p>
+                        <p>Presentase: 90%</p>
+                        <p>08:40 - 12:00</p>
+                        <p>B.202</p>
+                        <p class="text-blue-500 font-semibold mt-1">Struktur Data</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 border-t dark:border-gray-700 flex justify-around py-3">
+        <a href="home.html" class="flex flex-col items-center">
+            <i class="fa fa-home text-lg"></i>
+            <span class="text-xs">Home</span>
+        </a>
+        <a href="jadwal.html" class="flex flex-col items-center">
+            <i class="fa fa-calendar-alt text-lg"></i>
+            <span class="text-xs">Jadwal</span>
+        </a>
+        <a href="chatbot.html" class="flex flex-col items-center">
+            <i class="fa fa-comments text-lg"></i>
+            <span class="text-xs">Chat</span>
+        </a>
+        <a href="profile.html" class="flex flex-col items-center">
+            <i class="fa fa-user text-lg"></i>
+            <span class="text-xs">Profile</span>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dark Mode
+            const darkToggle = document.getElementById('darkToggle');
+            darkToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+            
+            // Toggles for KRS details
+            const krsToggles = document.querySelectorAll('.krs-toggle');
+            krsToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const details = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('.fa-chevron-down');
+                    details.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
+            // Navigasi
+            const krsView = document.getElementById('krs-view');
+            const kehadiranView = document.getElementById('kehadiran-view');
+            const kehadiranLinks = document.querySelectorAll('.show-kehadiran-details');
+            const backButtonKehadiran = document.getElementById('backButtonKehadiran');
+
+            kehadiranLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    krsView.classList.add('hidden');
+                    kehadiranView.classList.remove('hidden');
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

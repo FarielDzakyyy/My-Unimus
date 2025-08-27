@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Berhasil - UNIMUS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: url('images/background.jpg') center/cover;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: url('images/unimus_globe.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .content {
+            flex: 1;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(245, 245, 245, 0.9);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .tab.active {
+            background: white;
+            color: #2196F3;
+        }
+
+        .success-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .decorative-elements {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+
+        .success-icon::before {
+            content: '✓';
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .element-1 {
+            width: 20px;
+            height: 20px;
+            background: #2196F3;
+            top: -10px;
+            left: -30px;
+            animation-delay: 0s;
+        }
+
+        .element-2 {
+            width: 15px;
+            height: 15px;
+            background: #FF9800;
+            top: 20px;
+            right: -40px;
+            animation-delay: 0.5s;
+        }
+
+        .element-3 {
+            width: 25px;
+            height: 25px;
+            background: #9C27B0;
+            bottom: -15px;
+            left: -20px;
+            animation-delay: 1s;
+        }
+
+        .element-4 {
+            width: 12px;
+            height: 12px;
+            background: #4CAF50;
+            bottom: 30px;
+            right: -30px;
+            animation-delay: 1.5s;
+        }
+
+        .element-5 {
+            width: 18px;
+            height: 18px;
+            background: #F44336;
+            top: -20px;
+            right: -10px;
+            animation-delay: 2s;
+        }
+
+        .element-6 {
+            width: 22px;
+            height: 22px;
+            background: #00BCD4;
+            top: 60px;
+            left: -40px;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(120deg); }
+            66% { transform: translateY(5px) rotate(240deg); }
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .home-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                min-height: 80vh;
+                margin: 100px auto;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>UNIVERSITAS MUHAMMADIYAH SEMARANG</h1>
+            <p>Sistem Informasi Akademik</p>
+        </div>
+
+        <div class="content">
+            <div class="tabs">
+                <button class="tab active">Masuk</button>
+                <button class="tab">Daftar</button>
+            </div>
+
+            <div class="success-section">
+                <div class="decorative-elements">
+                    <div class="success-icon"></div>
+                    <div class="floating-element element-1"></div>
+                    <div class="floating-element element-2"></div>
+                    <div class="floating-element element-3"></div>
+                    <div class="floating-element element-4"></div>
+                    <div class="floating-element element-5"></div>
+                    <div class="floating-element element-6"></div>
+                </div>
+
+                <h2 class="success-title">Login Berhasil</h2>
+                <p class="success-message">
+                    Anda siap untuk melanjutkan ke halaman utama.
+                </p>
+                <button class="home-btn" onclick="window.location.href='dashboard.html'">Pergi ke Beranda</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+</html>
